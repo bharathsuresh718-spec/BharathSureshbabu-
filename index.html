@@ -272,6 +272,12 @@
         /* About Section */
         .about-container {
             display: block;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .about-container.visible {
+            animation: slideInRight 0.8s forwards;
         }
 
         .about-image {
@@ -288,6 +294,10 @@
         }
 
         @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1531,8 +1541,8 @@
 
         // Scroll Animations
         const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1544,7 +1554,7 @@
         }, observerOptions);
 
         // Observe all animated elements
-        document.querySelectorAll('.about-image, .about-text, .experience-item, .cert-card, .achievement-item').forEach(el => {
+        document.querySelectorAll('.about-container, .about-text, .experience-item, .cert-card, .achievement-item, .project-card').forEach(el => {
             observer.observe(el);
         });
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
